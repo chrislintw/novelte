@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-8">
+    <h1><%= @novel.title%></h1>
+    <%= image_tag @novel.image.url(:public) %>
+    <div class="tags">
+      <% @novel.tags.each do |tag| %>
+        <span class="label label-primary tag"><%= tag.name %></span>
+      <% end %>
+    </div>
+    <p><%= @novel.summary %></p>
+    <% @chapters.each do |chapter|%>
+      <h2>Chapter <%= "#{chapter.chapter_num}: #{chapter.title}" %></h2>
+      <p><%= chapter.outline %></p>
+      <%= link_to 'Read More', novel_chapter_path(@novel, chapter), class:'btn btn-default pull-right' %>
+    <% end %>
+  </div>
+  <div class="col-md-4">
+    <dl>
+      <dt>Chapters</dt>
+      <dd><%= @novel.chapters_number %></dd>
+      <dt>Authod</dt>
+      <dd><%= @novel.authors %></dd>
+      <dt>Categories</dt>
+      <dd><%= @novel.categories.map(&:name).join(', ') %></dd>
+      <dt>Rating</dt>
+      <dd><%= @novel.rating %></dd>
+    </dl>
+    <h3>All Chapters</h3>
+    <% @chapters.each do |chapter| %>
+      <%= link_to "#{chapter.title} #{chapter.chapter_num}", novel_chapter_path(@novel, chapter) %><br />
+    <% end %>
+  </div>
+</div>

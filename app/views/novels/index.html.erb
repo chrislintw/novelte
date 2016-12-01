@@ -1,0 +1,32 @@
+<h2>投票中...</h2>
+<div class="row">
+  <% @votting_novels.each do |novel| %>
+    <div class="col-sm-3">
+      <%= image_tag novel.image.url(:view), style: 'max-width:100%' %>
+      <p> <%=link_to novel.title, novel_path(novel) %> </p>
+    </div>
+<% end %>
+</div>
+
+<h2>徵稿中...</h2>
+<div class="row">
+  <% @contributing_novels.each do |novel| %>
+    <div class="col-sm-3">
+      <%= image_tag novel.image.url(:view), style: 'max-width:100%' %>
+      <p> <%=link_to novel.title, novel_path(novel) %> </p>
+    </div>
+  <% end %>
+</div>
+
+<h2>精選小說</h2>
+
+<h2>人氣小說</h2>
+
+<h2>人氣作家</h2>
+<h2>人氣標簽</h2>
+
+<div class="tags">
+  <% @popular_tags.each do |tag| %>
+    <span class="label label-primary tag"><%= tag.name %></span>
+  <% end %>
+</div>
