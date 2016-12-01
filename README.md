@@ -1,4 +1,4 @@
 # README
 
-It just practice building a project with TDD.
 
+This is a small project for my friend.
