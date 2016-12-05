@@ -23,6 +23,14 @@ RSpec.describe Admin::NovelsController, type: :controller do
   end
 
   describe '#create' do
+    context 'with valid attributes' do
+      it 'redirects to index'
+      it 'add a novel'
+    end
+    context 'with invalid attributes' do
+      it 'does not save the new novel'
+      it 're-renders the new method'
+    end
   end
 
   describe '#show' do
@@ -44,5 +52,14 @@ RSpec.describe Admin::NovelsController, type: :controller do
   end
 
   describe '#update' do
+    context 'valid attributes' do
+      it 'located the requested @novel'
+      it 'redirects to the updated novel'
+    end
+    context 'invalid attributes' do
+      it 'locates the requested @novel'
+      it "does not change @novel's attributes"
+      it 're-renders the edit method'
+    end
   end
 end
