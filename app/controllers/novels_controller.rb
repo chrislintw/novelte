@@ -1,9 +1,8 @@
 class NovelsController < ApplicationController
 
-
   def index
     @contributing_novels = Novel.where(status: 0)
-    @votting_novels = Novel.where(status: 1)
+    @voting_novels = Novel.where(status: 1)
     @popular_tags = Tag.all
   end
 
@@ -13,6 +12,6 @@ class NovelsController < ApplicationController
   end
 
   def search
-    @novels = Novel.all
+    @novels = Novel.search(params[:q])
   end
 end

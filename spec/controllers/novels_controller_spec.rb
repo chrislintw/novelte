@@ -12,19 +12,19 @@ RSpec.describe NovelsController, type: :controller do
     end
 
     it 'assigns a list of contributing novels to @contributing_novels' do
-      # votting_novels
+      # voting_novels
       do_request
       novels = create_list(:novel, 3)
       expect(assigns(:contributing_novels)).to eq novels
     end
 
-    it 'assigns a list of votting_novels to @votting_novels' do
+    it 'assigns a list of voting_novels to @voting_novels' do
       do_request
       novels = []
       3.times do
         novels << create(:novel, status: 1)
       end
-      expect(assigns(:votting_novels)).to eq novels
+      expect(assigns(:voting_novels)).to eq novels
     end
 
     it 'renders the :index template' do
@@ -56,6 +56,30 @@ RSpec.describe NovelsController, type: :controller do
   end
   describe '#search' do
     let(:novel) { create(:novel, title: "I'm Chris Lin!!") }
-    it 'response is success'
+    def do_request(str = '')
+      get :search, params: { q: str}
+    end
+
+    context "with valid params" do
+      it 'response is success' do
+        do_request
+        expect(response).to have_http_status(200)
+      end
+      it 'assigns a result to @novels' do
+        do_request('Chris')
+        expect(assigns(:novels)).to match_array [novel]
+      end
+    end
+
+    context 'with invalid params' do
+      it 'assigns nil to @novels' do
+        do_request
+        expect(assigns(:novels)).to be_nil
+      end
+      it 'response is success' do
+        do_request
+        expect(response).to have_http_status(200)
+      end
+    end
   end
 end

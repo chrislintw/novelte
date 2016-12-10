@@ -1,0 +1,9 @@
+<h1>搜尋結果</h1>
+
+<% if @novels.nil?  %>
+  nothing
+<% else %>
+  <% @novels.each do |novel| %>
+    <%= novel.title %><br />
+  <% end %>
+<% end %>

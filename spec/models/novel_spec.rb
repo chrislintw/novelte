@@ -28,7 +28,27 @@ RSpec.describe Novel, type: :model do
   # validations specs
   it { should define_enum_for(:status) }
   # scope specs
+
   # class method specs
+  describe 'search' do
+    context 'with string' do
+      it "'foo' returns 2 novels" do
+        @foo1 = create(:novel, title: 'testing title foo1')
+        @foo2 = create(:novel, title: 'testing title foo2')
+        novels_result = Novel.search('foo')
+        expect(novels_result).to match_array([@foo1, @foo2])
+      end
+      it "'sdf' returns a empty array" do
+        expect(Novel.search('sdf')).to be_empty
+      end
+    end
+    context 'without string' do
+      it 'returns nil' do
+        expect(Novel.search).to be_nil
+      end
+    end
+  end
+
   # instance method specs
   describe '#authors' do
     it 'returns all of authors'

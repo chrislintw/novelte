@@ -46,6 +46,14 @@ class Novel < ApplicationRecord
 
   has_many :chapters
 
+  def self.search(str=nil)
+    if str.nil? || str.empty?
+      nil
+    else
+      Novel.where('title LIKE ?', "%#{str}%")
+    end
+  end
+
   def image_file_name
     "#{image_fingerprint}.jpg"
   end

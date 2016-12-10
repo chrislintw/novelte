@@ -1,6 +1,6 @@
 <h2>投票中...</h2>
 <div class="row">
-  <% @votting_novels.each do |novel| %>
+  <% @voting_novels.each do |novel| %>
     <div class="col-sm-3">
       <%= image_tag novel.image.url(:view), style: 'max-width:100%' %>
       <p> <%=link_to novel.title, novel_path(novel) %> </p>
